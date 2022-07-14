@@ -1,6 +1,6 @@
 
-#ifndef HOSTPORT_H
-#define HOSTPORT_H
+#ifndef HOSTPORTSOCKET_H
+#define HOSTPORTSOCKET_H
 
 #include <memory> 
 #include <string>
