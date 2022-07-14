@@ -19,7 +19,6 @@ TARGET  	:= main
 # Directories
 SRCDIR      := ./src
 INCDIR      := ./include
-LIBDIR		:= ./lib
 BUILDDIR    := ./.build
 
 # Compiler
@@ -28,17 +27,17 @@ CC 			:= g++
 # Extensions
 SRCEXT      := cpp
 OBJEXT      := o
-LIBEXT		:= a
+
 
 # Flags, Libraries and Includes
 # edit these for different version of python and/or different path
 CFLAGS      := #-fpic #-shared -static
 ifeq ($(UNAME_S), linux)
-LIB			:=  -l:libsockpp.$(LIBEXT) -L$(LIBDIR)
-INC         := -I$(INCDIR)
-else
 LIB			:= 
 INC         := -I$(INCDIR) 
+else
+LIB			:= -lws2_32 
+INC         := -I$(INCDIR)
 endif
 
 
