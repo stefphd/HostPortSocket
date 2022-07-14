@@ -36,7 +36,7 @@ public:
         \param port The socket port to use.
         \return true if success, false otherwise.
 	*/
-    bool begin(const std::string& ipaddr, unsigned int port);
+    bool begin(const std::string& ipaddr, unsigned short port);
 
     /*! \brief Begin the host port.
 		\details Function to begin the host port communication with given header and terminator and default timeout.
@@ -46,7 +46,7 @@ public:
         \param terminator The terminator to use (as a HEX number of 4-bytes).
         \return true if success, false otherwise.
 	*/
-    bool begin(const std::string& ipaddr, unsigned int port, unsigned int header, unsigned int terminator);
+    bool begin(const std::string& ipaddr, unsigned short port, unsigned int header, unsigned int terminator);
 
     /*! \brief Begin the host port.
 		\details Function to begin the host port communication with given header, terminator and timeout.
@@ -57,7 +57,7 @@ public:
         \param timeout The timeout of the serial communcication.
         \return true if success, false otherwise.
 	*/
-    bool begin(const std::string& ipaddr, unsigned int port, unsigned int header, unsigned int terminator, unsigned int timeout);
+    bool begin(const std::string& ipaddr, unsigned short port, unsigned int header, unsigned int terminator, unsigned int timeout);
     
     /*! \brief Read data buffer.
 		\details Function to read a data buffer with given length from the host port.
@@ -96,13 +96,13 @@ public:
         Host port must be opened before.
         \return true if success, false otherwise.
 	*/
-    //bool flush(void);
+    bool flush(void);
 
     /*! \brief Set the serial port.
 		\details Function to set the socket port. The restart function must be called to make the change effective.
         \return true if success, false otherwise.
 	*/
-    bool setPort(unsigned int port);
+    bool setPort(unsigned short port);
 
     /*! \brief Set the IP address.
 		\details Function to set the IP address of the socket communiation. The restart function must be called to make the change effective.
@@ -132,7 +132,7 @@ public:
 		\details Function to get the serial port used for the host communication. 
         \return The serial port number.
 	*/
-    unsigned int getPort(void);
+    unsigned short getPort(void);
 
     /*! \brief Get the IP address.
 		\details Function to get the IP address used for the socket communication. 
@@ -172,10 +172,11 @@ public:
     
     static constexpr unsigned int HEADER = 0xFF812345; //!< Default header.
     static constexpr unsigned int TERMINATOR = 0xFF8CABDE; //!< Default terminator.
-    static constexpr unsigned int TIMEOUT = 100; //!< Default timeout.
+    static constexpr unsigned int TIMEOUT = 1000; //!< Default timeout.
 
 private:
     //static constexpr unsigned int TX_BUF_SIZE = 1024; //!< Size of the output buffer.
+    sockpp::socket_initializer sockInit;
     static constexpr unsigned int MASK = 0xFF; //!< Mask for parsing.
     sockpp::tcp_connector client; //!< Socket object.
     unsigned int _port; //!< Socket port.
@@ -185,7 +186,7 @@ private:
     unsigned int _timeout; //!< Timeout.
     //unsigned char _tx_buf[TX_BUF_SIZE]; //!< Tx buffer.
     bool _isFirstRead = false; //!< True if firt packer read.
-    bool init(const std::string& ipaddr, unsigned int port, unsigned int timeout); //!< Private initialization function
+    bool init(const std::string& ipaddr, unsigned short port, unsigned int timeout); //!< Private initialization function
 };
 
 #endif

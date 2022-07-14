@@ -5,7 +5,7 @@
 #include "HostPortSocket.h"
 
 //Begins
-bool HostPortSocket::begin(const std::string& ipaddr, unsigned int port) {
+bool HostPortSocket::begin(const std::string& ipaddr, unsigned short port) {
     _terminator = TERMINATOR;
     _header = HEADER;
     _timeout = TIMEOUT;
@@ -18,7 +18,7 @@ bool HostPortSocket::begin(const std::string& ipaddr, unsigned int port) {
     return false;
 }
 
-bool HostPortSocket::begin(const std::string& ipaddr, unsigned int port, unsigned int header, unsigned int terminator) {
+bool HostPortSocket::begin(const std::string& ipaddr, unsigned short port, unsigned int header, unsigned int terminator) {
     _terminator = terminator;
     _header = header;
     _timeout = TIMEOUT;
@@ -31,7 +31,7 @@ bool HostPortSocket::begin(const std::string& ipaddr, unsigned int port, unsigne
     return false;
 }
 
-bool HostPortSocket::begin(const std::string& ipaddr, unsigned int port, unsigned int header, unsigned int terminator, unsigned int timeout) {
+bool HostPortSocket::begin(const std::string& ipaddr, unsigned short port, unsigned int header, unsigned int terminator, unsigned int timeout) {
     _terminator = terminator;
     _header = header;
     _port = port;
@@ -56,7 +56,7 @@ HostPortSocket::HostPortSocket() {
 bool HostPortSocket::isInit(void) {
     return (bool)client;
 }
-bool HostPortSocket::setPort(unsigned int port) {
+bool HostPortSocket::setPort(unsigned short port) {
     //if (!serial) {
         _port = port;
         return true;
@@ -91,7 +91,7 @@ bool HostPortSocket::setTimeout(unsigned int timeout) {
     //}
     //return false;
 }
-unsigned int HostPortSocket::getPort(void) {
+unsigned short HostPortSocket::getPort(void) {
     return _port;
 }
 std::string HostPortSocket::getIP(void) {
@@ -115,14 +115,13 @@ bool HostPortSocket::restart(void) {
     client.close();
     return init(_ip, _port, _timeout);
 }
-/*
+
 bool HostPortSocket::flush(void) {
     if (isInit()) {
-        client.clear();
-        return true;
+        return restart();
     }
     return false;
-}*/
+}
 
 //write
 bool HostPortSocket::write(unsigned char* packetPtr, unsigned int size) {
@@ -212,8 +211,8 @@ bool HostPortSocket::read(unsigned char* packetPtr, unsigned int size) {
 }
 
 //init
-bool HostPortSocket::init(const std::string& ipaddr, unsigned int port, unsigned int timeout) { 
-    client.connect(sockpp::inet_address(ipaddr, port));
+bool HostPortSocket::init(const std::string& ipaddr, unsigned short port, unsigned int timeout) { 
+    client.connect({ipaddr, port});
     if (client) {
         client.read_timeout(std::chrono::milliseconds(timeout));
         client.write_timeout(std::chrono::milliseconds(timeout));
