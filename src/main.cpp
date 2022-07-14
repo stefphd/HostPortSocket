@@ -6,8 +6,7 @@
 #include <vector>
 #include "HostPortSocket.h"
 
-
-unsigned int port = 9876;
+unsigned short port = 9876;
 const char ip[] = "192.168.0.1";
 
 //sockpp::tcp_connector client;
@@ -20,6 +19,12 @@ int main() {
         printf("Unable to connect\n");
         return -1;
     }
+    if (!wifi_port.isInit()) {
+        printf("Issue in device connection\n");
+        return -1;
+    }
+
+    printf("Connected\n");
     while (1) {
         if (wifi_port.read((unsigned char*) data.data(), 4*32)) {
             for (int i = 0; i < 32; ++i) {
