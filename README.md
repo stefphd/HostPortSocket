@@ -1,6 +1,6 @@
-# HostPortSocket
+# HostPortTCP
 
-Host Port communication over socket. Tested on Linux (ArchLinux) and Windows (using MinGW x64).
+Host Port communication over TCP/IP protocol. Tested on Linux (ArchLinux) and Windows (using MinGW x64).
 
 Build using
 
