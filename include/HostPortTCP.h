@@ -7,8 +7,8 @@
 #include "sockpp/tcp_connector.h"
 #include "sockpp/version.h"
 
-/*! \brief A class for host communication via socket port.
-    \details Class for host communication via socket port with a specified communication protocol.
+/*! \brief A class for host communication via TCP/IP protocol.
+    \details Class for host communication via TCP/IP protocol with a specified communication protocol.
     Data packet consists of
     - 4-bytes header
     - data (with specified length)
