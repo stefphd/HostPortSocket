@@ -1,21 +1,21 @@
-//#include "HostPortSocket.h"
+//#include "HostPortTCP.h"
 
 #include <iostream>
 #include <string>
 #include <stdio.h>
 #include <vector>
-#include "HostPortSocket.h"
+#include "HostPortTCP.h"
 
 unsigned short port = 9876;
 const char ip[] = "192.168.0.1";
 
 //sockpp::tcp_connector client;
 
-HostPortSocket wifi_port;
+HostPortTCP wifi_port;
 std::vector<float> data(32);
 
 int main() {
-    if (!wifi_port.begin(ip, port, HostPortSocket::HEADER, HostPortSocket::TERMINATOR, 10000)) {
+    if (!wifi_port.begin(ip, port, HostPortTCP::HEADER, HostPortTCP::TERMINATOR, 10000)) {
         printf("Unable to connect\n");
         return -1;
     }

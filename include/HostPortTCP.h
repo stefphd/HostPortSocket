@@ -1,6 +1,6 @@
 
-#ifndef HOSTPORTSOCKET_H
-#define HOSTPORTSOCKET_H
+#ifndef HOSTPORTTCP_H
+#define HOSTPORTTCP_H
 
 #include <memory> 
 #include <string>
@@ -17,18 +17,18 @@
     \author Stefano Lovato
     \date 2022
 */
-class HostPortSocket {
+class HostPortTCP {
 public:
 
     /*! \brief Constructor.
 		\details Default constructor. 
 	*/
-    HostPortSocket();
+    HostPortTCP();
 
     /*! \brief Desctructor.
 		\details Default destructor. It automatically destroy the serial object.
 	*/
-    ~HostPortSocket();
+    ~HostPortTCP();
 
     /*! \brief Begin the host port.
 		\details Function to begin the host port communication with default header, terminator, and timeout.
