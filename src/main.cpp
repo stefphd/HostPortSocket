@@ -7,7 +7,7 @@
 #include "HostPortTCP.h"
 
 unsigned short port = 9876;
-const char ip[] = "192.168.0.1";
+const char ip[] = "192.168.1.10";
 
 //sockpp::tcp_connector client;
 
